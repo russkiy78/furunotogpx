@@ -18,7 +18,7 @@ python furunotogpx.py
 ```
 
 
-### Compile to execute
+### Compile to executive
 
 You can create you own installer by command:
 * Windows 32/64 MSI: 'python ./setup.py bdist_msi'
