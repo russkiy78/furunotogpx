@@ -1,4 +1,4 @@
-# furunotogpx
+# Furuno <-> GPX Converter
 Download from Furuno &amp; upload to Furuno files in GPX format.
 Written on Python3
 
