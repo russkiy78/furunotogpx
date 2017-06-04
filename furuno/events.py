@@ -13,6 +13,7 @@ from furuno.const import Const
 from xml.etree import cElementTree
 import math
 import threading
+from sys import exit
 
 Const = Const()
 
@@ -59,7 +60,7 @@ class EventFrame(MainFrame):
         self.serialPorts = PrintLines.searchcom(None)
         if (len(self.serialPorts) == 0):
             self.Error('Not found COM ports on this computer')
-            quit(0)
+            exit()
         self.m_comport.Set(self.serialPorts)
         self.m_comport.Select(0)
 

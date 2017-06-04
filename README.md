@@ -17,7 +17,6 @@ When start
 python furunotogpx.py
 ```
 
-
 ### Compile to executive
 
 You can create you own installer by command:
