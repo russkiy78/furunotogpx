@@ -1,0 +1,5 @@
+pyserial
+six
+wxPython
+pypubsub
+cx_freeze

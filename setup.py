@@ -9,14 +9,9 @@ if sys.platform == 'win32':
 
 build_exe_options = {
     "include_msvcr": True,  # skip error msvcr100.dll missing
-    "include_files": ["dlls/" + f for f in listdir("dlls/") if isfile(join("dlls/", f))]
+    "include_files":  ["dlls32/" + f for f in listdir("dlls32/") if isfile(join("dlls32/", f))] if sys.platform == 'win32' else ["dlls64/" + f for f in listdir("dlls64/") if isfile(join("dlls64/", f))]
 }
-install_exe_options = {
-    "install_dir": "D:/work/build"
-}
-bdist_msi_options = {
-    'add_to_path': True
-}
+bdist_msi_options = {}
 
 executables = [
     Executable('furunotogpx.py',
