@@ -1,13 +1,13 @@
 # Furuno <-> GPX Converter
 Download from Furuno &amp; upload to Furuno files in GPX format.
-Writen on Python3 with wxPython GUI lib.
+Written on Python3 with wxPython GUI lib.
 
 ### Compatibility
 Tested with FURUNO GP-32 , FURUNO GP-33
 
 ### Usage
 
-Install libs
+Install requirement libs
 
 ```
 pip install
