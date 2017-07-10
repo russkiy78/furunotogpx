@@ -58,9 +58,9 @@ class EventFrame(MainFrame):
     def initcom(self):
         # find com ports
         self.serialPorts = PrintLines.searchcom(None)
-        if (len(self.serialPorts) == 0):
-            self.Error('Not found COM ports on this computer')
-            exit()
+        #if (len(self.serialPorts) == 0):
+            # self.Error('Not found COM ports on this computer')
+            # exit()
         self.m_comport.Set(self.serialPorts)
         self.m_comport.Select(0)
 
@@ -278,9 +278,9 @@ class EventFrame(MainFrame):
                             }
                             for wpt in child:
                                 if (re.search('\}name', wpt.tag) and wpt.text):
-                                    tmpWaypoint['name'] = wpt.text.strip()
+                                    tmpWaypoint['name'] = wpt.text.strip().upper()
                                 if (re.search('\}desc', wpt.tag) and wpt.text):
-                                    tmpWaypoint['desc'] = wpt.text.strip()
+                                    tmpWaypoint['desc'] = wpt.text.strip().upper()
                                 if (re.search('\}sym', wpt.tag) and wpt.text):
                                     splitSym = re.split(',', wpt.text)
                                     if len(splitSym) == 2:
@@ -302,9 +302,9 @@ class EventFrame(MainFrame):
                             }
                             for rte in child:
                                 if (re.search('\}name$', rte.tag) and rte.text):
-                                    tmpRoute['name'] = rte.text.strip()
+                                    tmpRoute['name'] = rte.text.strip().upper()
                                 if (re.search('\}desc$', rte.tag) and rte.text):
-                                    tmpRoute['desc'] = rte.text.strip()
+                                    tmpRoute['desc'] = rte.text.strip().upper()
                                 if (re.search('\}rtept$', rte.tag) and ('lon' in rte.attrib) and ('lat' in rte.attrib)):
                                     lon = float(rte.attrib['lon'])
                                     furunoLon = round(
@@ -325,9 +325,9 @@ class EventFrame(MainFrame):
                                     routesTrackCounter = len(tmpRoute['track']) - 1
                                     for rtept in rte:
                                         if (re.search('\}name', rtept.tag) and rtept.text):
-                                            tmpRoute['track'][routesTrackCounter]['name'] = rtept.text.strip()
+                                            tmpRoute['track'][routesTrackCounter]['name'] = rtept.text.strip().upper()
                                         if (re.search('\}desc', rtept.tag) and rtept.text):
-                                            tmpRoute['track'][routesTrackCounter]['desc'] = rtept.text.strip()
+                                            tmpRoute['track'][routesTrackCounter]['desc'] = rtept.text.strip().upper()
                                         if (re.search('\}sym', rtept.tag) and rtept.text):
                                             splitSym = re.split(',', rtept.text)
                                             if len(splitSym) == 2:
@@ -403,6 +403,8 @@ class EventFrame(MainFrame):
                             ))
 
                     putData.append('$PFEC,GPxfr,CTL,E')
+                    #for val in putData:
+                        #print(val)
                     # connect to Thread
 
                     if putData and len(putData) > 0:
@@ -432,10 +434,11 @@ class EventFrame(MainFrame):
         else:
             for val in args:
                 try:
+                    #print(val)
                     self.serialConnect.write(val.encode('utf-8', 'replace') + b'\r\n')
                     wx.CallAfter(pub.sendMessage, "update", msg='##info Write: ' + val)
                 except:
                     wx.CallAfter(pub.sendMessage, "update", msg='##error Write cancelled!')
                     return
-            self.Info('Succes!')
+            self.Info('Success!')
             self.clearVars(False)
