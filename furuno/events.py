@@ -58,9 +58,9 @@ class EventFrame(MainFrame):
     def initcom(self):
         # find com ports
         self.serialPorts = PrintLines.searchcom(None)
-        #if (len(self.serialPorts) == 0):
-            # self.Error('Not found COM ports on this computer')
-            # exit()
+        if (len(self.serialPorts) == 0):
+            self.Error('Not found COM ports on this computer')
+            exit()
         self.m_comport.Set(self.serialPorts)
         self.m_comport.Select(0)
 
@@ -403,8 +403,8 @@ class EventFrame(MainFrame):
                             ))
 
                     putData.append('$PFEC,GPxfr,CTL,E')
-                    #for val in putData:
-                        #print(val)
+                    # for val in putData:
+                    # print(val)
                     # connect to Thread
 
                     if putData and len(putData) > 0:
@@ -434,7 +434,7 @@ class EventFrame(MainFrame):
         else:
             for val in args:
                 try:
-                    #print(val)
+                    # print(val)
                     self.serialConnect.write(val.encode('utf-8', 'replace') + b'\r\n')
                     wx.CallAfter(pub.sendMessage, "update", msg='##info Write: ' + val)
                 except:

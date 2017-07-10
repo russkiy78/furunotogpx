@@ -26,7 +26,7 @@ executables = [
 ]
 
 setup(name='furunotogpx',
-      version='1.01',
+      version='1.02',
       description='Furuno - GPX Converter',
       options={"build_exe": build_exe_options, "bdist_msi": bdist_msi_options},
       executables=executables
