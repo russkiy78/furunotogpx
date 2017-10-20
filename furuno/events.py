@@ -303,6 +303,10 @@ class EventFrame(MainFrame):
                             for rte in child:
                                 if (re.search('\}name$', rte.tag) and rte.text):
                                     tmpRoute['name'] = rte.text.strip().upper()
+                                    # take only 8 first symbols in route name  for furuno 32 version compatible!
+                                    tmpRoute['name'] = tmpRoute['name'] if len(tmpRoute['name']) <= 8 \
+                                        else tmpRoute['name'][:8]
+
                                 if (re.search('\}desc$', rte.tag) and rte.text):
                                     tmpRoute['desc'] = rte.text.strip().upper()
                                 if (re.search('\}rtept$', rte.tag) and ('lon' in rte.attrib) and ('lat' in rte.attrib)):
