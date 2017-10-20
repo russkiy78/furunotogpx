@@ -9,8 +9,10 @@ if sys.platform == 'win32':
 
 build_exe_options = {
     "include_msvcr": True,  # skip error msvcr100.dll missing
-    "include_files":  ["dlls64/" + f for f in listdir("dlls64/") if isfile(join("dlls64/", f))]
 }
+#    "include_files":  ["dlls64/" + f for f in listdir("dlls64/") if isfile(join("dlls64/", f))]
+# }
+
 bdist_msi_options = {
     'add_to_path': True,
     'upgrade_code': "{vjnow9q3c-5dfsd-5660-dn387-3afc59i5bng}"
@@ -26,7 +28,7 @@ executables = [
 ]
 
 setup(name='furunotogpx',
-      version='1.02',
+      version='1.03',
       description='Furuno - GPX Converter',
       options={"build_exe": build_exe_options, "bdist_msi": bdist_msi_options},
       executables=executables

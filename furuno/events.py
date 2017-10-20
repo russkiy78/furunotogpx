@@ -19,12 +19,12 @@ Const = Const()
 
 
 class EventFrame(MainFrame):
-    serialConnect: object
-    serialProtocol: object
-    serialPorts: list
-    parseWaypoints: dict
-    parseRoutes: dict
-    fileObject: object
+    serialConnect = None
+    serialProtocol = None
+    serialPorts = list()
+    parseWaypoints = {}
+    parseRoutes = dict()
+    fileObject = None
 
     def clearVars(self, full):
 
@@ -247,7 +247,7 @@ class EventFrame(MainFrame):
         self.m_panelD.Disable()
         self.m_fileUpload.Disable()
         if bool(self.m_fileUpload.GetPath().strip()):
-            root: str
+            root = ''
             try:
                 root = cElementTree.parse(self.m_fileUpload.GetPath().strip()).getroot()
             except:
